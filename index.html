@@ -16,6 +16,42 @@
 .modalwrap{position:absolute;inset:0;display:grid;place-items:center;background:#242e3570;backdrop-filter:blur(3px);padding:15px;z-index:5}.modalwrap.hide{display:none}.modal{width:min(380px,100%);background:#fffdf8;border-radius:23px;box-shadow:0 14px 34px #22251f44;padding:22px 24px;text-align:center}.modal .sticker{font-size:49px;line-height:1.2}.modal h2{font-size:clamp(24px,5vw,28px);margin:6px 0 8px}.modal p{line-height:1.7;color:#738084;font-size:14px;font-weight:650;margin:0 0 16px}.bigscore{font-size:44px;color:#df8656;font-weight:950}.bigscore span{font-size:16px}.note{font-size:12px!important}.btn{border:0;border-radius:14px;background:#f6bd72;color:#303d41;font-weight:950;padding:14px 20px;min-height:46px;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #d49956}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #d49956}.btn:focus-visible,.choice:focus-visible,.smallbtn:focus-visible{outline:3px solid #5fb0d0;outline-offset:3px}
 .panel{background:#fffdf9;border:1px solid #eae4dc;border-radius:19px;margin-top:16px;padding:13px 15px;box-shadow:0 4px 18px #544b3710}.paneltitle{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 11px}.paneltitle strong{font-size:15px;font-weight:950}.paneltitle small{color:#788489;font-size:11px}.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.choice{background:#f8f6f1;border:2px solid transparent;border-radius:13px;padding:7px 5px 8px;display:flex;align-items:center;gap:9px;justify-content:center;cursor:pointer;color:#405058;font:inherit;min-width:0}.choice.on{background:#fff2db;border-color:#efb878}.choice canvas{width:76px;height:76px;border-radius:10px;flex:none;background:linear-gradient(#e6f2ed,#d6e6e5)}.choice span{text-align:left;min-width:0}.choice b{display:block;font-size:13px;white-space:nowrap}.choice small{font-size:10px;color:#75818b;display:block;margin-top:3px}.below{display:flex;justify-content:space-between;align-items:center;gap:11px;flex-wrap:wrap;margin-top:12px}.directions{font-size:13px;color:#69777d;font-weight:650;line-height:1.65}.directions b{color:#364c56}.smallbtn{border:1px solid #d4d7d6;background:white;color:#495c66;border-radius:10px;padding:10px 13px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}.foot{text-align:center;font-size:11px;color:#8a9597;line-height:1.7;margin:12px 0 0}
 @media(max-width:590px){body{padding:10px 9px 21px}.mark{width:41px;height:41px;font-size:23px;border-radius:13px}.top{margin-bottom:10px}.sub{font-size:10px}.mini{font-size:10px;padding:7px}.stage{border-radius:16px}#game{height:min(66dvh,490px);min-height:370px}.hud{top:9px;left:9px;right:9px}.stat{padding:7px 8px;min-width:76px;border-radius:12px}.stat strong{font-size:21px}.stat small{font-size:10px}.phase{font-size:10px;padding:8px 9px;max-width:37%}.panel{margin-top:11px;padding:12px 9px}.paneltitle{margin-bottom:9px}.choice{gap:4px;flex-direction:column;padding:6px 3px}.choice canvas{width:52px;height:52px}.choice span{text-align:center}.choice b{font-size:12px}.choice small{font-size:9px;margin-top:0}.below{justify-content:center;text-align:center}.toast{font-size:12px;padding:9px}.modal{padding:20px 18px}}
+/* V1 usability improvement: character selection is visible before starting. */
+#intro{overflow-y:auto}
+#intro .intro-modal{width:min(480px,100%);max-height:100%;overflow-y:auto}
+.introchoose-title{font-size:13px;font-weight:900;color:#526573;margin:0 0 7px}
+.introchoices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.introchoices .choice{flex-direction:column;gap:3px;padding:7px 3px 8px}
+.introchoices .choice canvas{width:68px;height:68px}
+.introchoices .choice span{text-align:center}
+.introchoices .choice b{font-size:12px}
+.introchoices .choice small{font-size:10px;margin-top:1px}
+@media(max-width:590px){
+  #intro{padding:8px}
+  #intro .intro-modal{padding:13px 13px 12px;border-radius:17px}
+  #intro .sticker{font-size:30px}
+  #intro h2{font-size:21px;margin:2px 0 4px}
+  #intro p{font-size:12px;line-height:1.4;margin-bottom:8px}
+  #intro .introchoose-title{font-size:12px;margin-bottom:4px}
+  #intro .introchoices{gap:5px;margin-bottom:9px}
+  #intro .introchoices .choice{padding:4px 2px 5px;gap:2px}
+  #intro .introchoices .choice canvas{width:46px;height:46px}
+  #intro .introchoices .choice b{font-size:11px}
+  #intro .introchoices .choice small{font-size:9px}
+  #intro .btn{min-height:40px;padding:9px 16px;font-size:14px}
+  #intro .note{font-size:10px!important;margin-top:8px!important;margin-bottom:0!important}
+}
+/* 每局隨機風向，HUD 放在正中上方，不擋住成績。 */
+.windhud{position:absolute;left:50%;top:54px;transform:translateX(-50%);z-index:2;pointer-events:none;background:#fffefaec;border:1px solid #ffffffb9;border-radius:20px;padding:5px 11px;box-shadow:0 2px 8px #00000011;color:#526672;font-size:12px;font-weight:900;white-space:nowrap}
+@media(max-width:590px){.windhud{top:48px;font-size:10px;padding:5px 8px}}
+/* 空中操作：不遮擋原本的成績與風向資訊。 */
+.boostbtn{position:absolute;right:14px;bottom:15px;z-index:3;min-height:49px;padding:10px 15px;border:2px solid #fff8e9;border-radius:16px;background:#ffce83;color:#31434d;font:900 16px ui-rounded,"Noto Sans TC",system-ui,sans-serif;box-shadow:0 4px 0 #ca9959,0 4px 16px #34302a20;cursor:pointer;touch-action:manipulation}
+.boostbtn:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #ca9959}
+.boostbtn:focus-visible{outline:3px solid #4c9cc5;outline-offset:2px}
+.boostbtn:disabled{opacity:.6;cursor:default}
+.boostbtn.hide{display:none}
+.toast.flight{bottom:80px}
+@media(max-width:590px){.boostbtn{right:10px;bottom:12px;padding:10px 12px;font-size:14px;min-height:47px}.toast.flight{bottom:75px}}
 </style>
 </head>
 <body>
@@ -24,16 +60,24 @@
 <section class="stage" aria-label="主管請起飛遊戲畫面">
 <canvas id="game" role="application" aria-label="抓住椅子往左下拖曳，放開即可發射"></canvas>
 <div class="hud" aria-hidden="true"><div class="stat"><small>本次距離</small><strong id="score">0<span>m</span></strong></div><div class="phase" id="phase">🏢 辦公室頂樓</div><div class="stat right"><small>個人最佳</small><strong id="best">0<span>m</span></strong></div></div>
+<div class="windhud" id="windhud" aria-live="polite">🌤️ 風向準備中</div>
 <div class="toast hide" id="toast">按住畫面、往左下拉，再放開！</div>
-<div class="modalwrap" id="intro"><div class="modal"><div class="sticker">🪑💨</div><h2>今天誰要起飛？</h2><p>選一位 Q 版角色，悄悄繞到椅子後方，<br>抓住 → 往左下拉瞄準 → 放開！<br>玻璃咔嚓一聲，開始比誰飛得遠。</p><button class="btn" id="start">▶ 開始遊戲</button><p class="note" style="margin-top:14px;margin-bottom:0">卡通特效 · 安全軟墊降落 </p></div></div>
+<button class="boostbtn hide" type="button" id="boost" aria-label="空中上飄，剩餘三次">⬆️ 上飄 ×3</button>
+<div class="modalwrap" id="intro"><div class="modal intro-modal"><div class="sticker">🪑💨</div><h2>今天誰要起飛？</h2><p>選一位 Q 版角色，悄悄繞到椅子後方，<br>抓住 → 往左下拉瞄準 → 放開發射！<br>飛出窗外後，點畫面可隨機上飄 3 次！</p>
+<div class="introchoose-title">🎭 直接選角色</div>
+<div class="introchoices" role="group" aria-label="開始遊戲前選擇角色">
+<button class="choice on" data-person="boss" aria-pressed="true"><canvas class="miniAvatar" data-person="boss" width="140" height="140" aria-hidden="true"></canvas><span><b>神秘老闆</b><small>較重 · 好運 🍀</small></span></button>
+<button class="choice" data-person="woman" aria-pressed="false"><canvas class="miniAvatar" data-person="woman" width="140" height="140" aria-hidden="true"></canvas><span><b>主管 A</b><small>較輕 · 少好運</small></span></button>
+<button class="choice" data-person="man" aria-pressed="false"><canvas class="miniAvatar" data-person="man" width="140" height="140" aria-hidden="true"></canvas><span><b>主管 B</b><small>標準 · 普通運</small></span></button>
+</div><button class="btn" id="start">▶ 開始遊戲</button><p class="note" style="margin-top:14px;margin-bottom:0">卡通特效 · 安全軟墊降落 · 不包含真實照片</p></div></div>
 <div class="modalwrap hide" id="result"><div class="modal"><div class="sticker" id="resultIcon">🏆</div><h2 id="resultTitle">漂亮起飛！</h2><div class="bigscore"><span id="resultNum">0</span><span> 公尺</span></div><p id="resultSub">再來一次，挑戰更遠！</p><button class="btn" id="retry">🔁 再丟一次</button></div></div>
 </section>
-<section class="panel"><div class="paneltitle"><strong>🎭 選擇角色</strong><small>趕快選一位角色</small></div><div class="choices">
-<button class="choice on" data-person="boss" aria-pressed="true"><canvas class="miniAvatar" data-person="boss" width="140" height="140"></canvas><span><b>神秘老闆</b><small>灰髮 · 深藍上衣</small></span></button>
-<button class="choice" data-person="woman" aria-pressed="false"><canvas class="miniAvatar" data-person="woman" width="140" height="140"></canvas><span><b>主管 A</b><small>眼鏡 · 綁髮</small></span></button>
-<button class="choice" data-person="man" aria-pressed="false"><canvas class="miniAvatar" data-person="man" width="140" height="140"></canvas><span><b>主管 B</b><small>黑髮 · 深色上衣</small></span></button>
-</div><div class="below"><div class="directions"><b>玩法：</b>手指／滑鼠按住 → 往左下拉 → 放開發射！<br>角色自動走到椅子後面，完全不用控制走路。</div><button class="smallbtn" id="reset">↻ 重新開始</button></div></section>
-<p class="foot">三位都是趣味卡通角色，最後會掉入安全氣墊。最佳紀錄只儲存在這台裝置。</p>
+<section class="panel"><div class="paneltitle"><strong>🎭 選擇角色</strong><small>想把誰丟出去呢?</small></div><div class="choices">
+<button class="choice on" data-person="boss" aria-pressed="true"><canvas class="miniAvatar" data-person="boss" width="140" height="140"></canvas><span><b>神秘老闆</b><small>較重 · 好運 🍀</small></span></button>
+<button class="choice" data-person="woman" aria-pressed="false"><canvas class="miniAvatar" data-person="woman" width="140" height="140"></canvas><span><b>主管 A</b><small>較輕 · 少好運</small></span></button>
+<button class="choice" data-person="man" aria-pressed="false"><canvas class="miniAvatar" data-person="man" width="140" height="140"></canvas><span><b>主管 B</b><small>標準 · 普通運</small></span></button>
+</div><div class="below"><div class="directions"><b>玩法：</b>手指／滑鼠按住 → 往左下拉 → 放開發射！<br>角色自動走到椅子後面，完全不用控制走路。<br>飛出窗外後點畫面，或按「⬆️ 上飄」；每局最多 3 次。<br>🌬️ 風向約每 0.7～1.2 秒更新。</div><button class="smallbtn" id="reset">↻ 重新開始</button></div></section>
+<p class="foot">以照片的髮型、眼鏡與服裝做簡化角色設計，上方遊戲與下方選單使用完全相同的人物圖形。三位都是趣味卡通角色，最後會掉入安全氣墊。最佳紀錄只儲存在這台裝置；每局獨立，風向隨機；飛行中可上飄 3 次，角色有不同重量與幸運機率；每次點按上飄的力道也會隨機變化。與舊蓄力版的紀錄分開保存。</p>
 </main>
 <script>
 (()=>{
@@ -47,38 +91,97 @@ const characters={
   player:{hair:'#6d574c',hair2:'#a58a75',face:'#f0c5a3',shirt:'#df965d',detail:'#f0b57f',pants:'#577b82',chair:'#8394a4',name:'玩家'}
 };
 let who='boss',state='intro',W=900,H=560,s=1,dpr=1,clock=0,approach=0,cam=0,shake=0,winX=0,bossX=0,heroX=0,floor=454,broken=false,score=0,best=0,aim={sx:0,sy:0,dx:0,dy:0,power:.35,angle:.45},pressId=null,flightTime=0,stopT=0;
+// 每局獨立：不依歷史分數或按住時長加成，發射力道只由拖曳距離決定。
+// 風力以遊戲級數顯示（非真實氣象風級），正值是順風，負值是逆風。
+const BEST_KEY='office_takeoff_v1_wind_best'; // 延用純風向版個人紀錄，不清除舊數據
+// 重量決定下落速度與上飄效果；每次上飄力道隨機，好運機率決定抽到較強區間的機會。
+// 不加入隨機發射力道、不恢復隨機上升氣流，也不會根據歷史分數升級。
+const flightStats={boss:{weight:1.13,luck:.52},woman:{weight:.89,luck:.12},man:{weight:1,luck:.28}};
+const MAX_BOOSTS=3;
+let boostsLeft=MAX_BOOSTS,lastBoostAt=-1,boostText=[];
+let wind=0,windChangeIn=0,camY=0;
+function nextWindDelay(){return .7+Math.random()*.5} // 原本 1.8～3.5 秒，現在 0.7～1.2 秒
+function randomWind(){return Math.floor(Math.random()*11)-5}
+function windLabel(){return wind>0?`🌬️ 順風 +${wind}`:wind<0?`🌬️ 逆風 ${wind}`:'🌤️ 無風 0'}
+function showWind(){el('windhud').textContent=windLabel()}
+function updateBoost(){const b=el('boost');b.textContent=`⬆️ 上飄 ×${boostsLeft}`;b.disabled=boostsLeft===0;b.setAttribute('aria-label',`空中上飄，剩餘 ${boostsLeft} 次`)}
+function boost(){
+  // 真正飛出窗外後才允許，觸地及結算後均不可使用；防止同一瞬間誤觸多次。
+  if(state!=='fly'||!broken||rocket.x<=winX+30||rocket.y>=floor-55||boostsLeft<=0||flightTime-lastBoostAt<.16)return;
+  const p=flightStats[who],lucky=Math.random()<p.luck;
+  // 每次上飄都重新抽一次「實際力道」，不是固定值、不是長按蓄力。
+  // 好運機率由角色決定；抽中好運時，改從較強的隨機區間抽取。
+  // 普通：165～280；好運：295～485（遊戲速度單位），再依體重調整。
+  const rawLift=lucky?295+Math.random()*190:165+Math.random()*115;
+  const lift=rawLift/p.weight;
+  rocket.vy=Math.max(-1050,Math.min(rocket.vy,75)-lift);
+  boostsLeft--;lastBoostAt=flightTime;updateBoost();
+  explode(rocket.x,rocket.y+34,lucky?'#ffe67d':'#d9faff',lucky?16:10);
+  boostText.push({x:rocket.x,y:rocket.y-95,life:.85,msg:lucky?'🍀 幸運上飄！':'⬆️ 上飄！'});
+  // 簡短回饋；不顯示額外的長篇提示。
+  toast(lucky?'🍀 幸運上飄！':'⬆️ 上飄！');
+}
+function announceAim(){toast(`🎯 力道 ${Math.round(aim.power*100)}% · 角度 ${Math.round(aim.angle*180/Math.PI)}°`)}
 let rocket={x:0,y:0,vx:0,vy:0,rot:0,vr:0,bounces:0,trail:[]},shards=[],stars=[];
-try{best=parseInt(localStorage.getItem('office_takeoff_v2_best')||'0',10)||0}catch(_){best=0}
+try{best=parseInt(localStorage.getItem(BEST_KEY)||'0',10)||0}catch(_){best=0}
 function fmt(n){return Math.max(0,Math.floor(n)).toLocaleString('en-US')}
-function labelScore(){el('score').innerHTML=`${fmt(score)}<span>m</span>`;el('best').innerHTML=`${fmt(best)}<span>m</span>`}
+// 里程愈來愈遠時，頂部 HUD 縮寫大數字，避免手機畫面被擠壞；結算畫面仍顯示完整數字。
+function hudFmt(n){if(n<100000)return fmt(n);if(n<1e8)return `${parseFloat((n/10000).toFixed(1))}萬`;if(n<1e12)return `${parseFloat((n/1e8).toFixed(1))}億`;return n.toExponential(1)}
+function labelScore(){el('score').innerHTML=`${hudFmt(score)}<span>m</span>`;el('best').innerHTML=`${hudFmt(best)}<span>m</span>`}
 function toast(s0){el('toast').textContent=s0;el('toast').classList.toggle('hide',!s0)}
 function phase(s0){el('phase').textContent=s0}
 function resize(){const r=cv.getBoundingClientRect();dpr=Math.min(2.2,devicePixelRatio||1);cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);s=r.height/H;W=r.width/s;winX=W*.82;bossX=W*(W<550?.52:.55);heroX=bossX-87;}
 function choose(k){who=k;document.querySelectorAll('.choice').forEach(b=>{const hit=b.dataset.person===k;b.classList.toggle('on',hit);b.setAttribute('aria-pressed',String(hit))});if(state==='fly'||state==='result'){reset()} }
-function reset(){state='walk';approach=0;clock=0;cam=0;shake=0;broken=false;score=0;flightTime=0;stopT=0;pressId=null;stars=[];shards=[];cv.classList.remove('grab');rocket={x:0,y:0,vx:0,vy:0,rot:0,vr:0,bounces:0,trail:[]};el('intro').classList.add('hide');el('result').classList.add('hide');toast('🤫 偷偷走到椅子後面…');phase('🏢 辦公室頂樓');labelScore()}
+function reset(){state='walk';approach=0;clock=0;cam=0;camY=0;shake=0;broken=false;score=0;flightTime=0;stopT=0;pressId=null;boostsLeft=MAX_BOOSTS;lastBoostAt=-1;boostText=[];updateBoost();el('boost').classList.add('hide');el('toast').classList.remove('flight');stars=[];shards=[];wind=randomWind();windChangeIn=nextWindDelay();showWind();cv.classList.remove('grab');rocket={x:0,y:0,vx:0,vy:0,rot:0,vr:0,bounces:0,trail:[]};el('intro').classList.add('hide');el('result').classList.add('hide');toast('🤫 偷偷走到椅子後面…');phase('🏢 辦公室頂樓');labelScore()}
 function point(e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/s,y:(e.clientY-r.top)/s}}
-cv.addEventListener('pointerdown',e=>{if(state!=='ready')return;e.preventDefault();const p=point(e);pressId=e.pointerId;cv.setPointerCapture?.(pressId);aim.sx=p.x;aim.sy=p.y;aim.dx=0;aim.dy=0;aim.power=.23;aim.angle=.5;state='aim';cv.classList.add('grab');toast('↙ 往左下拉，放開就發射！')});
-cv.addEventListener('pointermove',e=>{if(state!=='aim'||pressId!==e.pointerId)return;e.preventDefault();const p=point(e);aim.dx=clamp(aim.sx-p.x,-45,215);aim.dy=clamp(p.y-aim.sy,-45,198);const dist=Math.hypot(aim.dx,aim.dy);aim.power=clamp(dist/185,0,1);aim.angle=clamp(Math.atan2(Math.max(12,aim.dy),Math.max(30,aim.dx)),.18,1.06);toast(`💪 力道 ${Math.round(aim.power*100)}%　角度 ${Math.round(aim.angle*180/Math.PI)}°`)});
+cv.addEventListener('pointerdown',e=>{if(state==='fly'){e.preventDefault();boost();return}if(state!=='ready')return;e.preventDefault();const p=point(e);pressId=e.pointerId;cv.setPointerCapture?.(pressId);aim.sx=p.x;aim.sy=p.y;aim.dx=0;aim.dy=0;aim.power=.23;aim.angle=.5;state='aim';cv.classList.add('grab');toast('↙ 往左下拉調整力道與角度，放開發射！')});
+cv.addEventListener('pointermove',e=>{if(state!=='aim'||pressId!==e.pointerId)return;e.preventDefault();const p=point(e);aim.dx=clamp(aim.sx-p.x,-45,215);aim.dy=clamp(p.y-aim.sy,-45,198);const dist=Math.hypot(aim.dx,aim.dy);aim.power=clamp(dist/185,0,1);aim.angle=clamp(Math.atan2(Math.max(12,aim.dy),Math.max(30,aim.dx)),.18,1.06);announceAim()});
 cv.addEventListener('pointerup',e=>{if(state!=='aim'||pressId!==e.pointerId)return;e.preventDefault();pressId=null;cv.classList.remove('grab');if(Math.hypot(aim.dx,aim.dy)<17){state='ready';toast('👇 按住畫面往左下拉，再放開');return}launch()});
 cv.addEventListener('pointercancel',()=>{pressId=null;cv.classList.remove('grab');if(state==='aim'){state='ready';toast('👇 重新按住畫面開始瞄準')}});
-function launch(){const speed=420+860*aim.power;state='fly';flightTime=0;const angle=aim.angle;rocket={x:bossX+10,y:floor-122,vx:Math.cos(angle)*speed,vy:-Math.sin(angle)*speed,rot:0,vr:3.1+2*aim.power,bounces:0,trail:[]};phase('🚀 起飛中');toast('咻～～～椅子發射！');explode(rocket.x,rocket.y,'#ffe4a0',12);shake=4}
+el('boost').addEventListener('click',boost);
+window.addEventListener('keydown',e=>{if(state==='fly'&&!e.repeat&&(e.code==='ArrowUp'||e.code==='Space')&&e.target!==el('boost')){e.preventDefault();boost()}});
+function launch(){const speed=420+860*aim.power;state='fly';flightTime=0;const angle=aim.angle;rocket={x:bossX+10,y:floor-122,vx:Math.cos(angle)*speed,vy:-Math.sin(angle)*speed,rot:0,vr:3.1+2*aim.power,bounces:0,trail:[]};showWind();phase('🚀 起飛中');toast('🚀 咻～～起飛！');explode(rocket.x,rocket.y,'#ffe4a0',12);shake=4}
 function explode(x,y,col,n=12){for(let i=0;i<n;i++){const a=Math.random()*TAU,sp=30+Math.random()*215;stars.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-25,r:2+Math.random()*4,life:.6+Math.random()*.45,c:col})}}
-function shatter(){if(broken)return;broken=true;shake=15;phase('💥 破窗成功！');toast('玻璃咔嚓！開始比飛行距離');for(let i=0;i<29;i++){shards.push({x:winX-32+Math.random()*68,y:115+Math.random()*255,vx:55+Math.random()*340,vy:-340+Math.random()*390,rot:Math.random()*6.28,spin:-6+Math.random()*12,size:5+Math.random()*11,life:.9+Math.random()*.6})}explode(winX,rocket.y,'#defaff',24)}
-function finish(){if(state==='result')return;state='result';score=Math.max(0,Math.floor((rocket.x-winX)*.67));if(score>best){best=score;try{localStorage.setItem('office_takeoff_v2_best',String(best))}catch(_){}}labelScore();el('resultNum').textContent=fmt(score);el('resultIcon').textContent=score>900?'🏆':score>400?'🚀':'🪑';el('resultTitle').textContent=score>900?'這次飛超遠！':score>400?'漂亮起飛！':'再來一次更遠！';el('resultSub').textContent=`${characters[who].name}已安全落到彈力軟墊！你的最佳成績：${fmt(best)} 公尺。`;el('result').classList.remove('hide');phase('🏁 安全降落');toast('')}
-function tick(dt){clock+=dt;shake=Math.max(0,shake-24*dt);if(state==='walk'){approach+=dt;if(approach>.76){state='ready';phase('🎯 準備發射');toast('👇 按住椅子附近，往左下拉，再放開！')}}
-if(state==='fly'){flightTime+=dt;const steps=Math.min(10,Math.max(1,Math.ceil(dt/.015)));for(let i=0;i<steps;i++){const d=dt/steps;rocket.vy+=590*d;rocket.x+=rocket.vx*d;rocket.y+=rocket.vy*d;rocket.rot+=rocket.vr*d;rocket.trail.push({x:rocket.x,y:rocket.y,life:.28});if(rocket.trail.length>20)rocket.trail.shift();if(!broken&&rocket.x>winX-18)shatter();if(broken){score=Math.max(score,Math.floor((rocket.x-winX)*.67));labelScore()}
+function shatter(){if(broken)return;broken=true;shake=15;phase('💥 破窗成功！');el('boost').classList.remove('hide');el('toast').classList.add('flight');updateBoost();toast('👆 點畫面可上飄，最多 3 次！');for(let i=0;i<29;i++){shards.push({x:winX-32+Math.random()*68,y:115+Math.random()*255,vx:55+Math.random()*340,vy:-340+Math.random()*390,rot:Math.random()*6.28,spin:-6+Math.random()*12,size:5+Math.random()*11,life:.9+Math.random()*.6})}explode(winX,rocket.y,'#defaff',24)}
+function finish(){if(state==='result')return;state='result';el('boost').classList.add('hide');el('toast').classList.remove('flight');score=Math.max(score,Math.max(0,Math.floor((rocket.x-winX)*.67)));if(score>best){best=score;try{localStorage.setItem(BEST_KEY,String(best))}catch(_){}}labelScore();el('resultNum').textContent=fmt(score);el('resultIcon').textContent=score>900?'🏆':score>400?'🚀':'🪑';el('resultTitle').textContent=score>900?'這次飛超遠！':score>400?'漂亮起飛！':'再來一次更遠！';el('resultSub').textContent=`${characters[who].name}已安全落到彈力軟墊！本模式最佳 ${fmt(best)} 公尺。`;el('result').classList.remove('hide');phase('🏁 安全降落');toast('')}
+function tick(dt){clock+=dt;shake=Math.max(0,shake-24*dt);if(state==='walk'){approach+=dt;if(approach>.76){state='ready';phase('🎯 準備發射');toast('👇 看風向，往左下拉後放開！')}}
+// 在瞄準時同樣會變風向；不再有任何隨時間波動的放開時機倍率。
+if(state==='walk'||state==='ready'||state==='aim'||state==='fly'){
+  windChangeIn-=dt;
+  if(windChangeIn<=0){
+    const oldWind=wind;wind=randomWind();windChangeIn=nextWindDelay();showWind();
+    // 風向只在上方 HUD 更新，不干擾上飄時的回饋。
+  }
+}
+if(state==='fly'){
+// 發射力道沒有隨機加成；只有風向變化與玩家主動使用上飄時的隨機力道。
+// 無依歷史分數的加成，也沒有強制飛行秒數／距離的結算上限。
+const simDt=dt;
+flightTime+=simDt;
+const steps=Math.min(20,Math.max(1,Math.ceil(simDt/.012)));
+for(let i=0;i<steps;i++){const d=simDt/steps;
+rocket.vx+=wind*22*d;
+rocket.vy+=590*flightStats[who].weight*d;
+rocket.x+=rocket.vx*d;rocket.y+=rocket.vy*d;rocket.rot+=rocket.vr*d;
+rocket.trail.push({x:rocket.x,y:rocket.y,life:.28});if(rocket.trail.length>20)rocket.trail.shift();if(!broken&&rocket.x>winX-18)shatter();if(broken){score=Math.max(score,Math.floor((rocket.x-winX)*.67));labelScore()}
 if(rocket.y>floor-53&&rocket.x>winX+60){rocket.y=floor-53;if(rocket.bounces<2&&Math.abs(rocket.vy)>145){rocket.vy=-Math.abs(rocket.vy)*(rocket.bounces===0?.37:.22);rocket.vx*=.72;rocket.vr*=.8;rocket.bounces++;shake=5;explode(rocket.x,floor-20,'#ffe6ae',9)}else{rocket.vy=0;rocket.vx*=.68;stopT+=d;if(stopT>.55){finish();break}}}
-if(flightTime>10||rocket.x>16000){finish();break}}
-cam=lerp(cam,Math.max(0,rocket.x-W*.55),clamp(4*dt,0,1));rocket.trail.forEach(p=>p.life-=dt)}
+// 只有實際停在軟墊上才結束，沒有固定飛行秒數或距離終點。
+}
+const targetCam=Math.max(0,rocket.x-W*.55);
+cam=lerp(cam,targetCam,clamp(Math.max(4*dt,(targetCam-cam)/Math.max(1,W*.7)),0,1));
+// 若高角度或氣流把角色送到很高處，鏡頭向上跟隨，不讓人飛出畫面。
+camY=lerp(camY,Math.max(0,95-rocket.y),clamp(3*dt,0,1));
+rocket.trail.forEach(p=>p.life-=simDt)}
 for(const q of stars){q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=280*dt;q.life-=dt}stars=stars.filter(p=>p.life>0);
+for(const t of boostText){t.y-=28*dt;t.life-=dt}boostText=boostText.filter(t=>t.life>0);
 for(const q of shards){q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=570*dt;q.rot+=q.spin*dt;q.life-=dt}shards=shards.filter(q=>q.life>0)}
 function fill(c){ctx.fillStyle=c;ctx.fill()}
 function ellipse(x,y,rx,ry,c){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,TAU);fill(c)}
 function rr(x,y,w,h,r,c){ctx.beginPath();ctx.roundRect(x,y,w,h,r);fill(c)}
 function line(x,y,X,Y,c,w=3){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(X,Y);ctx.strokeStyle=c;ctx.lineWidth=w;ctx.lineCap='round';ctx.stroke()}
 function gradient(y1,y2,a,b){const gr=ctx.createLinearGradient(0,y1,0,y2);gr.addColorStop(0,a);gr.addColorStop(1,b);return gr}
-function sky(){ctx.fillStyle=gradient(0,H,'#d7f1f8','#eef9fb');ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(-cam*.18,0);for(let i=-3;i<13;i++){const x=i*185+75,y=122+(i%3)*52;ctx.globalAlpha=.72;ellipse(x,y,28,14,'#fff');ellipse(x+20,y-8,25,19,'#fff');ellipse(x+43,y,27,14,'#fff')}ctx.restore();ctx.globalAlpha=1;
-ctx.save();ctx.translate(-cam*.3,0);for(let i=-2;i<75;i++){const x=i*85,h=85+((i+50)*29%115);rr(x,466-h,70,h,2,i%3?'#c0d9df':'#adcfd8');for(let j=0;j<3;j++)for(let k=0;k<2;k++)rr(x+13+j*17,479-h+k*27,8,12,1,'#f3f5e9')}ctx.restore();rr(0,484,W,90,0,'#b7d7b9');rr(0,482,W,7,0,'#9fc7a8')}
+function sky(){ctx.fillStyle=gradient(0,H,'#d7f1f8','#eef9fb');ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(-cam*.18,0);const cloudStart=Math.floor((cam*.18-110)/185)-1;for(let i=cloudStart;i<cloudStart+Math.ceil(W/185)+5;i++){const x=i*185+75,y=122+(((i%3)+3)%3)*52;ctx.globalAlpha=.72;ellipse(x,y,28,14,'#fff');ellipse(x+20,y-8,25,19,'#fff');ellipse(x+43,y,27,14,'#fff')}ctx.restore();ctx.globalAlpha=1;
+ctx.save();ctx.translate(-cam*.3,0);const cityStart=Math.floor((cam*.3-90)/85)-1;for(let i=cityStart;i<cityStart+Math.ceil(W/85)+5;i++){const x=i*85,h=85+(((i+50)*29%115)+115)%115;rr(x,466-h,70,h,2,i%3?'#c0d9df':'#adcfd8');for(let j=0;j<3;j++)for(let k=0;k<2;k++)rr(x+13+j*17,479-h+k*27,8,12,1,'#f3f5e9')}ctx.restore();rr(0,484,W,90,0,'#b7d7b9');rr(0,482,W,7,0,'#9fc7a8')}
 function office(){ctx.save();ctx.translate(-cam,0);const edge=winX+83;ctx.fillStyle='#ede8df';ctx.fillRect(-100,0,edge+100,floor+4);ctx.fillStyle=gradient(0,floor,'#e9e4da','#dbd2c7');ctx.fillRect(-100,0,edge+100,floor-116);rr(-100,336,edge+100,13,0,'#d3c5b1');ctx.fillStyle=gradient(349,H,'#dbba93','#b98659');ctx.fillRect(-100,349,edge+100,H-349);for(let j=0;j<9;j++){const y=358+j*29;line(-100,y,edge,y,j%2?'#b8875f77':'#d7a67777',1.8)}
 // ceiling trim and soft wall art
 rr(-100,0,edge+100,21,0,'#d6d0c7');rr(28,80,119,95,8,'#c2d0ce');rr(35,87,105,81,5,'#f3f1e9');rr(47,109,79,6,3,'#b9d4d7');rr(47,125,61,5,3,'#e1c0a5');rr(47,140,84,5,3,'#c9d3c6');
@@ -185,10 +288,10 @@ function hero(x,y,walking=false,lifting=false){
   drawChibi(ctx,'player',{walk:walking,raise:lifting});ctx.restore();
 }
 function arrows(){const x=bossX+10,y=floor-55;ctx.save();ctx.setLineDash([5,8]);ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x-70,y+18,x-107,y+89);ctx.lineWidth=3;ctx.strokeStyle='#e89869';ctx.stroke();ctx.restore();line(x-107,y+89,x-91,y+83,'#e89869',3);line(x-107,y+89,x-103,y+73,'#e89869',3)}
-function trajectory(){const x=bossX+10,y=floor-122,a=aim.angle,speed=420+860*aim.power;ctx.save();ctx.setLineDash([4,11]);ctx.lineWidth=4;ctx.lineCap='round';ctx.strokeStyle='#e59466';ctx.beginPath();for(let i=0;i<=33;i++){const t=i*.052,xx=x+Math.cos(a)*speed*t,yy=y-Math.sin(a)*speed*t+590*t*t/2;if(yy>floor||xx>x+W*.85)break;if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke();ctx.restore();rr(x-86,73,175,35,15,'#fffef3');ctx.textAlign='center';ctx.fillStyle='#49606a';ctx.font='800 15px system-ui';ctx.fillText(`力道 ${Math.round(aim.power*100)}%  ·  ${Math.round(a*180/Math.PI)}°`,x,96)}
+function trajectory(){const x=bossX+10,y=floor-122,a=aim.angle,speed=(420+860*aim.power);ctx.save();ctx.setLineDash([4,11]);ctx.lineWidth=4;ctx.lineCap='round';ctx.strokeStyle='#e59466';ctx.beginPath();for(let i=0;i<=33;i++){const t=i*.052,xx=x+Math.cos(a)*speed*t+wind*22*t*t/2,yy=y-Math.sin(a)*speed*t+590*flightStats[who].weight*t*t/2;if(yy>floor||xx>x+W*.85)break;if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke();ctx.restore();rr(x-105,73,210,35,15,'#fffef3');ctx.textAlign='center';ctx.fillStyle='#49606a';ctx.font='800 14px system-ui';ctx.fillText(`力道 ${Math.round(aim.power*100)}% · ${Math.round(a*180/Math.PI)}°`,x,96)}
 function flying(){ctx.save();ctx.translate(-cam,0);for(let i=0;i<rocket.trail.length;i+=2){const p=rocket.trail[i];ctx.globalAlpha=Math.max(0,p.life/.3)*.27;ellipse(p.x-10,p.y,11,4,'#fff')}ctx.globalAlpha=1;chairPerson(rocket.x,rocket.y,rocket.rot*.7,1,who,true);ctx.restore()}
-function particles(){ctx.save();ctx.translate(-cam,0);for(const q of shards){ctx.save();ctx.translate(q.x,q.y);ctx.rotate(q.rot);ctx.globalAlpha=clamp(q.life,0,1);ctx.beginPath();ctx.moveTo(-q.size/2,-q.size/2);ctx.lineTo(q.size/2,-q.size/3);ctx.lineTo(0,q.size);ctx.closePath();fill('#d5f5ff');ctx.strokeStyle='#97d3e1';ctx.lineWidth=1.4;ctx.stroke();ctx.restore()}for(const q of stars){ctx.globalAlpha=clamp(q.life,0,1);ellipse(q.x,q.y,q.r,q.r*.65,q.c)}ctx.restore();ctx.globalAlpha=1}
-function draw(){ctx.setTransform(dpr*s,0,0,dpr*s,0,0);ctx.clearRect(0,0,W,H);ctx.save();if(shake)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake*.7);sky();office();if(['intro','walk','ready','aim'].includes(state)){ctx.save();ctx.translate(-cam,0);const p=state==='walk'?clamp(approach/.76,0,1):state==='intro'?0:1;hero(lerp(Math.max(36,heroX-110),heroX,p),floor-53,state==='walk',state==='aim');if(state==='aim'){chairPerson(bossX+10,floor-122+Math.sin(clock*10)*2,Math.sin(clock*7)*.025,1,who);trajectory()}else{chairPerson(bossX+10,floor-53,0,1,who);if(state==='ready'){arrows();rr(bossX-102,floor-244,203,37,17,'#fffdf7');ctx.fillStyle='#536773';ctx.textAlign='center';ctx.font='800 14px system-ui';ctx.fillText('👇 抓住椅子，往左下拉',bossX,floor-220)}}ctx.restore()}if(['fly','result'].includes(state)){ctx.save();ctx.translate(-cam,0);if(cam<W*.9)hero(heroX,floor-53,false,true);ctx.restore();flying()}particles();ctx.restore()}
+function particles(){ctx.save();ctx.translate(-cam,0);for(const q of shards){ctx.save();ctx.translate(q.x,q.y);ctx.rotate(q.rot);ctx.globalAlpha=clamp(q.life,0,1);ctx.beginPath();ctx.moveTo(-q.size/2,-q.size/2);ctx.lineTo(q.size/2,-q.size/3);ctx.lineTo(0,q.size);ctx.closePath();fill('#d5f5ff');ctx.strokeStyle='#97d3e1';ctx.lineWidth=1.4;ctx.stroke();ctx.restore()}for(const q of stars){ctx.globalAlpha=clamp(q.life,0,1);ellipse(q.x,q.y,q.r,q.r*.65,q.c)}for(const t of boostText){ctx.globalAlpha=clamp(t.life/.85,0,1);ctx.font='900 17px ui-rounded,system-ui';ctx.textAlign='center';ctx.lineWidth=4;ctx.strokeStyle='#ffffff';ctx.strokeText(t.msg,t.x,t.y);ctx.fillStyle='#386c80';ctx.fillText(t.msg,t.x,t.y)}ctx.restore();ctx.globalAlpha=1}
+function draw(){ctx.setTransform(dpr*s,0,0,dpr*s,0,0);ctx.clearRect(0,0,W,H);ctx.fillStyle='#dff3fa';ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(0,camY);if(shake)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake*.7);sky();office();if(['intro','walk','ready','aim'].includes(state)){ctx.save();ctx.translate(-cam,0);const p=state==='walk'?clamp(approach/.76,0,1):state==='intro'?0:1;hero(lerp(Math.max(36,heroX-110),heroX,p),floor-53,state==='walk',state==='aim');if(state==='aim'){chairPerson(bossX+10,floor-122+Math.sin(clock*10)*2,Math.sin(clock*7)*.025,1,who);trajectory()}else{chairPerson(bossX+10,floor-53,0,1,who);if(state==='ready'){arrows();rr(bossX-102,floor-244,203,37,17,'#fffdf7');ctx.fillStyle='#536773';ctx.textAlign='center';ctx.font='800 14px system-ui';ctx.fillText('👇 看風向，往左下拉後放開！',bossX,floor-220)}}ctx.restore()}if(['fly','result'].includes(state)){ctx.save();ctx.translate(-cam,0);if(cam<W*.9)hero(heroX,floor-53,false,true);ctx.restore();flying()}particles();ctx.restore()}
 function loop(now){if(!loop.prev)loop.prev=now;const dt=clamp((now-loop.prev)/1000,0,.032);loop.prev=now;if(state!=='intro'&&state!=='result')tick(dt);else clock+=dt;draw();requestAnimationFrame(loop)}
 // Same drawing functions on small canvases: any changes to the game character
 // automatically update the portraits and preserve exact face/body proportions.
