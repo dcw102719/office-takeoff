@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#f3eee6">
+<title>主管，請起飛！V1｜角色統一 Q 版</title>
+<style>
+:root{font-family:ui-rounded,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;color:#293843;background:#f3eee6}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(155deg,#f7f3eb,#eee8de);padding:14px 15px 28px;overscroll-behavior:none}
+.main{max-width:940px;margin:0 auto}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 2px 13px}.logo{display:flex;gap:11px;align-items:center}.mark{width:48px;height:48px;border-radius:16px;background:#ffde9c;display:grid;place-items:center;font-size:28px;box-shadow:inset -4px -5px rgba(174,132,78,.12)}h1{font-size:clamp(22px,3vw,31px);margin:0;line-height:1.15;font-weight:900}.sub{color:#738087;font-weight:700;font-size:12px;margin:5px 0 0}.mini{font-weight:800;font-size:11px;border-radius:40px;background:#fff;padding:8px 11px;color:#59666a;white-space:nowrap;box-shadow:0 2px 8px #5954480c}
+.stage{position:relative;border-radius:19px;overflow:hidden;box-shadow:0 12px 36px #514b3a2a,0 2px 5px #59544615;background:#d9edf1}
+#game{display:block;width:100%;height:clamp(375px,56vw,548px);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}#game.grab{cursor:grabbing}
+.hud{position:absolute;left:12px;right:12px;top:12px;display:flex;justify-content:space-between;align-items:start;gap:8px;pointer-events:none;z-index:2}.stat{background:#ffffffef;border:1px solid #ffffff;padding:9px 12px;border-radius:15px;min-width:98px;box-shadow:0 3px 14px #0000000e;backdrop-filter:blur(4px)}.stat.right{text-align:right}.stat small{display:block;font-size:11px;color:#78868b;font-weight:800}.stat strong{display:block;font-size:25px;line-height:1.23;font-weight:950;letter-spacing:-.7px;white-space:nowrap}.stat strong span{font-size:12px;font-weight:800;margin-left:3px;color:#697a80}.phase{align-self:start;margin:1px auto 0;background:#fffefaeb;backdrop-filter:blur(4px);border-radius:100px;font-size:12px;font-weight:900;padding:10px 12px;max-width:43%;text-align:center;color:#495963;box-shadow:0 3px 10px #0000000b}
+.toast{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);background:#fffef6ed;padding:10px 15px;border-radius:50px;font-size:13px;font-weight:850;text-align:center;max-width:94%;width:max-content;color:#455b68;pointer-events:none;box-shadow:0 3px 15px #00000014;z-index:2}.toast.hide{display:none}
+.modalwrap{position:absolute;inset:0;display:grid;place-items:center;background:#242e3570;backdrop-filter:blur(3px);padding:15px;z-index:5}.modalwrap.hide{display:none}.modal{width:min(380px,100%);background:#fffdf8;border-radius:23px;box-shadow:0 14px 34px #22251f44;padding:22px 24px;text-align:center}.modal .sticker{font-size:49px;line-height:1.2}.modal h2{font-size:clamp(24px,5vw,28px);margin:6px 0 8px}.modal p{line-height:1.7;color:#738084;font-size:14px;font-weight:650;margin:0 0 16px}.bigscore{font-size:44px;color:#df8656;font-weight:950}.bigscore span{font-size:16px}.note{font-size:12px!important}.btn{border:0;border-radius:14px;background:#f6bd72;color:#303d41;font-weight:950;padding:14px 20px;min-height:46px;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #d49956}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #d49956}.btn:focus-visible,.choice:focus-visible,.smallbtn:focus-visible{outline:3px solid #5fb0d0;outline-offset:3px}
+.panel{background:#fffdf9;border:1px solid #eae4dc;border-radius:19px;margin-top:16px;padding:13px 15px;box-shadow:0 4px 18px #544b3710}.paneltitle{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 11px}.paneltitle strong{font-size:15px;font-weight:950}.paneltitle small{color:#788489;font-size:11px}.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.choice{background:#f8f6f1;border:2px solid transparent;border-radius:13px;padding:7px 5px 8px;display:flex;align-items:center;gap:9px;justify-content:center;cursor:pointer;color:#405058;font:inherit;min-width:0}.choice.on{background:#fff2db;border-color:#efb878}.choice canvas{width:76px;height:76px;border-radius:10px;flex:none;background:linear-gradient(#e6f2ed,#d6e6e5)}.choice span{text-align:left;min-width:0}.choice b{display:block;font-size:13px;white-space:nowrap}.choice small{font-size:10px;color:#75818b;display:block;margin-top:3px}.below{display:flex;justify-content:space-between;align-items:center;gap:11px;flex-wrap:wrap;margin-top:12px}.directions{font-size:13px;color:#69777d;font-weight:650;line-height:1.65}.directions b{color:#364c56}.smallbtn{border:1px solid #d4d7d6;background:white;color:#495c66;border-radius:10px;padding:10px 13px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}.foot{text-align:center;font-size:11px;color:#8a9597;line-height:1.7;margin:12px 0 0}
+@media(max-width:590px){body{padding:10px 9px 21px}.mark{width:41px;height:41px;font-size:23px;border-radius:13px}.top{margin-bottom:10px}.sub{font-size:10px}.mini{font-size:10px;padding:7px}.stage{border-radius:16px}#game{height:min(66dvh,490px);min-height:370px}.hud{top:9px;left:9px;right:9px}.stat{padding:7px 8px;min-width:76px;border-radius:12px}.stat strong{font-size:21px}.stat small{font-size:10px}.phase{font-size:10px;padding:8px 9px;max-width:37%}.panel{margin-top:11px;padding:12px 9px}.paneltitle{margin-bottom:9px}.choice{gap:4px;flex-direction:column;padding:6px 3px}.choice canvas{width:52px;height:52px}.choice span{text-align:center}.choice b{font-size:12px}.choice small{font-size:9px;margin-top:0}.below{justify-content:center;text-align:center}.toast{font-size:12px;padding:9px}.modal{padding:20px 18px}}
+</style>
+</head>
+<body>
+<main class="main">
+<header class="top"><div class="logo"><div class="mark">🪑</div><div><h1>主管，請起飛！<span style="font-size:12px;color:#b08c65"> V1</span></h1><div class="sub">辦公室放飛計畫 · 同款大頭短身 Q 版</div></div></div><div class="mini">📱 手機／電腦</div></header>
+<section class="stage" aria-label="主管請起飛遊戲畫面">
+<canvas id="game" role="application" aria-label="抓住椅子往左下拖曳，放開即可發射"></canvas>
+<div class="hud" aria-hidden="true"><div class="stat"><small>本次距離</small><strong id="score">0<span>m</span></strong></div><div class="phase" id="phase">🏢 辦公室頂樓</div><div class="stat right"><small>個人最佳</small><strong id="best">0<span>m</span></strong></div></div>
+<div class="toast hide" id="toast">按住畫面、往左下拉，再放開！</div>
+<div class="modalwrap" id="intro"><div class="modal"><div class="sticker">🪑💨</div><h2>今天誰要起飛？</h2><p>選一位 Q 版角色，悄悄繞到椅子後方，<br>抓住 → 往左下拉瞄準 → 放開！<br>玻璃咔嚓一聲，開始比誰飛得遠。</p><button class="btn" id="start">▶ 開始遊戲</button><p class="note" style="margin-top:14px;margin-bottom:0">卡通特效 · 安全軟墊降落 · 不包含真實照片</p></div></div>
+<div class="modalwrap hide" id="result"><div class="modal"><div class="sticker" id="resultIcon">🏆</div><h2 id="resultTitle">漂亮起飛！</h2><div class="bigscore"><span id="resultNum">0</span><span> 公尺</span></div><p id="resultSub">再來一次，挑戰更遠！</p><button class="btn" id="retry">🔁 再丟一次</button></div></div>
+</section>
+<section class="panel"><div class="paneltitle"><strong>🎭 選擇角色</strong><small>遊戲裡與選單完全相同的角色</small></div><div class="choices">
+<button class="choice on" data-person="boss" aria-pressed="true"><canvas class="miniAvatar" data-person="boss" width="140" height="140"></canvas><span><b>神秘老闆</b><small>灰髮 · 深藍上衣</small></span></button>
+<button class="choice" data-person="woman" aria-pressed="false"><canvas class="miniAvatar" data-person="woman" width="140" height="140"></canvas><span><b>主管 A</b><small>眼鏡 · 綁髮</small></span></button>
+<button class="choice" data-person="man" aria-pressed="false"><canvas class="miniAvatar" data-person="man" width="140" height="140"></canvas><span><b>主管 B</b><small>黑髮 · 深色上衣</small></span></button>
+</div><div class="below"><div class="directions"><b>玩法：</b>手指／滑鼠按住 → 往左下拉 → 放開發射！<br>角色自動走到椅子後面，完全不用控制走路。</div><button class="smallbtn" id="reset">↻ 重新開始</button></div></section>
+<p class="foot">以照片的髮型、眼鏡與服裝做簡化角色設計，上方遊戲與下方選單使用完全相同的人物圖形。三位都是趣味卡通角色，最後會掉入安全氣墊。最佳紀錄只儲存在這台裝置。</p>
+</main>
+<script>
+(()=>{
+'use strict';
+const el=id=>document.getElementById(id),cv=el('game'),ctx=cv.getContext('2d');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t,TAU=Math.PI*2;
+const characters={
+  boss:{hair:'#777b80',hair2:'#b5b9bc',face:'#efbb99',shirt:'#283f60',detail:'#f0f0e8',pants:'#303949',chair:'#79918e',name:'神秘老闆'},
+  woman:{hair:'#28282c',hair2:'#48444b',face:'#eabe9c',shirt:'#b9c5c5',detail:'#f3f5f3',pants:'#5b6370',chair:'#b48b83',name:'主管 A'},
+  man:{hair:'#26292e',hair2:'#353b43',face:'#e7b594',shirt:'#313842',detail:'#a2adb2',pants:'#373a46',chair:'#8394a4',name:'主管 B'},
+  player:{hair:'#6d574c',hair2:'#a58a75',face:'#f0c5a3',shirt:'#df965d',detail:'#f0b57f',pants:'#577b82',chair:'#8394a4',name:'玩家'}
+};
+let who='boss',state='intro',W=900,H=560,s=1,dpr=1,clock=0,approach=0,cam=0,shake=0,winX=0,bossX=0,heroX=0,floor=454,broken=false,score=0,best=0,aim={sx:0,sy:0,dx:0,dy:0,power:.35,angle:.45},pressId=null,flightTime=0,stopT=0;
+let rocket={x:0,y:0,vx:0,vy:0,rot:0,vr:0,bounces:0,trail:[]},shards=[],stars=[];
+try{best=parseInt(localStorage.getItem('office_takeoff_v2_best')||'0',10)||0}catch(_){best=0}
+function fmt(n){return Math.max(0,Math.floor(n)).toLocaleString('en-US')}
+function labelScore(){el('score').innerHTML=`${fmt(score)}<span>m</span>`;el('best').innerHTML=`${fmt(best)}<span>m</span>`}
+function toast(s0){el('toast').textContent=s0;el('toast').classList.toggle('hide',!s0)}
+function phase(s0){el('phase').textContent=s0}
+function resize(){const r=cv.getBoundingClientRect();dpr=Math.min(2.2,devicePixelRatio||1);cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);s=r.height/H;W=r.width/s;winX=W*.82;bossX=W*(W<550?.52:.55);heroX=bossX-87;}
+function choose(k){who=k;document.querySelectorAll('.choice').forEach(b=>{const hit=b.dataset.person===k;b.classList.toggle('on',hit);b.setAttribute('aria-pressed',String(hit))});if(state==='fly'||state==='result'){reset()} }
+function reset(){state='walk';approach=0;clock=0;cam=0;shake=0;broken=false;score=0;flightTime=0;stopT=0;pressId=null;stars=[];shards=[];cv.classList.remove('grab');rocket={x:0,y:0,vx:0,vy:0,rot:0,vr:0,bounces:0,trail:[]};el('intro').classList.add('hide');el('result').classList.add('hide');toast('🤫 偷偷走到椅子後面…');phase('🏢 辦公室頂樓');labelScore()}
+function point(e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)/s,y:(e.clientY-r.top)/s}}
+cv.addEventListener('pointerdown',e=>{if(state!=='ready')return;e.preventDefault();const p=point(e);pressId=e.pointerId;cv.setPointerCapture?.(pressId);aim.sx=p.x;aim.sy=p.y;aim.dx=0;aim.dy=0;aim.power=.23;aim.angle=.5;state='aim';cv.classList.add('grab');toast('↙ 往左下拉，放開就發射！')});
+cv.addEventListener('pointermove',e=>{if(state!=='aim'||pressId!==e.pointerId)return;e.preventDefault();const p=point(e);aim.dx=clamp(aim.sx-p.x,-45,215);aim.dy=clamp(p.y-aim.sy,-45,198);const dist=Math.hypot(aim.dx,aim.dy);aim.power=clamp(dist/185,0,1);aim.angle=clamp(Math.atan2(Math.max(12,aim.dy),Math.max(30,aim.dx)),.18,1.06);toast(`💪 力道 ${Math.round(aim.power*100)}%　角度 ${Math.round(aim.angle*180/Math.PI)}°`)});
+cv.addEventListener('pointerup',e=>{if(state!=='aim'||pressId!==e.pointerId)return;e.preventDefault();pressId=null;cv.classList.remove('grab');if(Math.hypot(aim.dx,aim.dy)<17){state='ready';toast('👇 按住畫面往左下拉，再放開');return}launch()});
+cv.addEventListener('pointercancel',()=>{pressId=null;cv.classList.remove('grab');if(state==='aim'){state='ready';toast('👇 重新按住畫面開始瞄準')}});
+function launch(){const speed=420+860*aim.power;state='fly';flightTime=0;const angle=aim.angle;rocket={x:bossX+10,y:floor-122,vx:Math.cos(angle)*speed,vy:-Math.sin(angle)*speed,rot:0,vr:3.1+2*aim.power,bounces:0,trail:[]};phase('🚀 起飛中');toast('咻～～～椅子發射！');explode(rocket.x,rocket.y,'#ffe4a0',12);shake=4}
+function explode(x,y,col,n=12){for(let i=0;i<n;i++){const a=Math.random()*TAU,sp=30+Math.random()*215;stars.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-25,r:2+Math.random()*4,life:.6+Math.random()*.45,c:col})}}
+function shatter(){if(broken)return;broken=true;shake=15;phase('💥 破窗成功！');toast('玻璃咔嚓！開始比飛行距離');for(let i=0;i<29;i++){shards.push({x:winX-32+Math.random()*68,y:115+Math.random()*255,vx:55+Math.random()*340,vy:-340+Math.random()*390,rot:Math.random()*6.28,spin:-6+Math.random()*12,size:5+Math.random()*11,life:.9+Math.random()*.6})}explode(winX,rocket.y,'#defaff',24)}
+function finish(){if(state==='result')return;state='result';score=Math.max(0,Math.floor((rocket.x-winX)*.67));if(score>best){best=score;try{localStorage.setItem('office_takeoff_v2_best',String(best))}catch(_){}}labelScore();el('resultNum').textContent=fmt(score);el('resultIcon').textContent=score>900?'🏆':score>400?'🚀':'🪑';el('resultTitle').textContent=score>900?'這次飛超遠！':score>400?'漂亮起飛！':'再來一次更遠！';el('resultSub').textContent=`${characters[who].name}已安全落到彈力軟墊！你的最佳成績：${fmt(best)} 公尺。`;el('result').classList.remove('hide');phase('🏁 安全降落');toast('')}
+function tick(dt){clock+=dt;shake=Math.max(0,shake-24*dt);if(state==='walk'){approach+=dt;if(approach>.76){state='ready';phase('🎯 準備發射');toast('👇 按住椅子附近，往左下拉，再放開！')}}
+if(state==='fly'){flightTime+=dt;const steps=Math.min(10,Math.max(1,Math.ceil(dt/.015)));for(let i=0;i<steps;i++){const d=dt/steps;rocket.vy+=590*d;rocket.x+=rocket.vx*d;rocket.y+=rocket.vy*d;rocket.rot+=rocket.vr*d;rocket.trail.push({x:rocket.x,y:rocket.y,life:.28});if(rocket.trail.length>20)rocket.trail.shift();if(!broken&&rocket.x>winX-18)shatter();if(broken){score=Math.max(score,Math.floor((rocket.x-winX)*.67));labelScore()}
+if(rocket.y>floor-53&&rocket.x>winX+60){rocket.y=floor-53;if(rocket.bounces<2&&Math.abs(rocket.vy)>145){rocket.vy=-Math.abs(rocket.vy)*(rocket.bounces===0?.37:.22);rocket.vx*=.72;rocket.vr*=.8;rocket.bounces++;shake=5;explode(rocket.x,floor-20,'#ffe6ae',9)}else{rocket.vy=0;rocket.vx*=.68;stopT+=d;if(stopT>.55){finish();break}}}
+if(flightTime>10||rocket.x>16000){finish();break}}
+cam=lerp(cam,Math.max(0,rocket.x-W*.55),clamp(4*dt,0,1));rocket.trail.forEach(p=>p.life-=dt)}
+for(const q of stars){q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=280*dt;q.life-=dt}stars=stars.filter(p=>p.life>0);
+for(const q of shards){q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=570*dt;q.rot+=q.spin*dt;q.life-=dt}shards=shards.filter(q=>q.life>0)}
+function fill(c){ctx.fillStyle=c;ctx.fill()}
+function ellipse(x,y,rx,ry,c){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,TAU);fill(c)}
+function rr(x,y,w,h,r,c){ctx.beginPath();ctx.roundRect(x,y,w,h,r);fill(c)}
+function line(x,y,X,Y,c,w=3){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(X,Y);ctx.strokeStyle=c;ctx.lineWidth=w;ctx.lineCap='round';ctx.stroke()}
+function gradient(y1,y2,a,b){const gr=ctx.createLinearGradient(0,y1,0,y2);gr.addColorStop(0,a);gr.addColorStop(1,b);return gr}
+function sky(){ctx.fillStyle=gradient(0,H,'#d7f1f8','#eef9fb');ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(-cam*.18,0);for(let i=-3;i<13;i++){const x=i*185+75,y=122+(i%3)*52;ctx.globalAlpha=.72;ellipse(x,y,28,14,'#fff');ellipse(x+20,y-8,25,19,'#fff');ellipse(x+43,y,27,14,'#fff')}ctx.restore();ctx.globalAlpha=1;
+ctx.save();ctx.translate(-cam*.3,0);for(let i=-2;i<75;i++){const x=i*85,h=85+((i+50)*29%115);rr(x,466-h,70,h,2,i%3?'#c0d9df':'#adcfd8');for(let j=0;j<3;j++)for(let k=0;k<2;k++)rr(x+13+j*17,479-h+k*27,8,12,1,'#f3f5e9')}ctx.restore();rr(0,484,W,90,0,'#b7d7b9');rr(0,482,W,7,0,'#9fc7a8')}
+function office(){ctx.save();ctx.translate(-cam,0);const edge=winX+83;ctx.fillStyle='#ede8df';ctx.fillRect(-100,0,edge+100,floor+4);ctx.fillStyle=gradient(0,floor,'#e9e4da','#dbd2c7');ctx.fillRect(-100,0,edge+100,floor-116);rr(-100,336,edge+100,13,0,'#d3c5b1');ctx.fillStyle=gradient(349,H,'#dbba93','#b98659');ctx.fillRect(-100,349,edge+100,H-349);for(let j=0;j<9;j++){const y=358+j*29;line(-100,y,edge,y,j%2?'#b8875f77':'#d7a67777',1.8)}
+// ceiling trim and soft wall art
+rr(-100,0,edge+100,21,0,'#d6d0c7');rr(28,80,119,95,8,'#c2d0ce');rr(35,87,105,81,5,'#f3f1e9');rr(47,109,79,6,3,'#b9d4d7');rr(47,125,61,5,3,'#e1c0a5');rr(47,140,84,5,3,'#c9d3c6');
+// office table and laptop
+const deskX=Math.max(15,bossX-285);ellipse(deskX+76,430,105,12,'#79533227');rr(deskX,348,145,14,6,'#c5a07c');rr(deskX+15,360,10,74,2,'#b48d69');rr(deskX+122,360,10,74,2,'#b48d69');rr(deskX+42,299,68,49,6,'#52616a');rr(deskX+47,304,58,36,3,'#bddfe0');rr(deskX+37,345,80,5,2,'#9a9890');
+// big clear window
+const lx=winX-63,wy=87,ww=146,wh=277;rr(lx-11,wy-11,ww+22,wh+22,9,'#b8c5c5');rr(lx-5,wy-5,ww+10,wh+10,5,'#fcfaf4');ctx.save();ctx.beginPath();ctx.rect(lx,wy,ww,wh);ctx.clip();ctx.fillStyle=gradient(wy,wy+wh,'#b3e7f5','#e5f7f8');ctx.fillRect(lx,wy,ww,wh);for(let i=0;i<8;i++){const h=29+(i*17)%62;rr(lx+i*20,wy+wh-h,18,h,1,'#b2d2dc')}ctx.restore();if(!broken){ctx.fillStyle='#e7f9ff50';ctx.fillRect(lx,wy,ww,wh);line(lx+ww*.5,wy,lx+ww*.5,wy+wh,'#f5fcfc',7);line(lx,wy+wh*.52,lx+ww,wy+wh*.52,'#f5fcfc',7);line(lx+107,wy+24,lx+91,wy+59,'#ffffffb0',5)}else{ctx.beginPath();ctx.moveTo(lx,wy);ctx.lineTo(lx+25,wy);ctx.lineTo(lx+10,wy+32);fill('#e5fbff');ctx.beginPath();ctx.moveTo(lx+ww,wy+wh);ctx.lineTo(lx+ww-21,wy+wh);ctx.lineTo(lx+ww-8,wy+wh-31);fill('#e5fbff')}
+ctx.strokeStyle='#fbfbf8';ctx.lineWidth=8;ctx.strokeRect(lx,wy,ww,wh);ctx.strokeStyle='#bcc6c1';ctx.lineWidth=2;ctx.strokeRect(lx-7,wy-7,ww+14,wh+14);
+rr(winX+83,0,22,floor,0,'#d9d3c9');ctx.restore()}
+// SINGLE SOURCE OF TRUTH: stage characters and character-selection thumbnails
+// are drawn with exactly the same renderer, not two different illustrations.
+function rounded(g,x,y,w,h,r,color){g.fillStyle=color;g.beginPath();g.roundRect(x,y,w,h,r);g.fill()}
+function oval(g,x,y,rx,ry,color){g.fillStyle=color;g.beginPath();g.ellipse(x,y,rx,ry,0,0,TAU);g.fill()}
+function stroke(g,x,y,X,Y,color,width){g.strokeStyle=color;g.lineWidth=width;g.lineCap='round';g.beginPath();g.moveTo(x,y);g.lineTo(X,Y);g.stroke()}
+function hairShape(g,kind,p){
+  g.fillStyle=p.hair;g.beginPath();
+  if(kind==='boss'){
+    g.moveTo(-34,-58);g.bezierCurveTo(-42,-108,-15,-116,4,-107);g.bezierCurveTo(30,-114,39,-84,35,-57);g.lineTo(26,-67);g.quadraticCurveTo(10,-84,-4,-73);g.quadraticCurveTo(-22,-81,-34,-58);g.fill();
+    g.fillStyle=p.hair2;g.beginPath();g.moveTo(-30,-83);g.quadraticCurveTo(-8,-112,18,-98);g.quadraticCurveTo(4,-98,-6,-87);g.quadraticCurveTo(-18,-82,-30,-83);g.fill();
+    stroke(g,-25,-80,-7,-90,'#dbdedc',2.6);
+  }else if(kind==='woman'){
+    oval(g,31,-82,15,16,p.hair);
+    g.moveTo(-34,-61);g.bezierCurveTo(-36,-112,-2,-115,14,-105);g.bezierCurveTo(35,-100,39,-79,33,-59);g.lineTo(24,-70);g.quadraticCurveTo(0,-84,-27,-58);g.closePath();g.fill();
+    oval(g,-30,-65,5,18,p.hair);oval(g,30,-63,5,16,p.hair);
+    stroke(g,-12,-95,12,-94,'#54505a',1.6);
+  }else if(kind==='man'){
+    g.moveTo(-35,-62);g.bezierCurveTo(-40,-112,-2,-118,17,-106);g.bezierCurveTo(31,-108,39,-88,35,-65);g.quadraticCurveTo(26,-84,18,-72);g.quadraticCurveTo(9,-95,0,-74);g.quadraticCurveTo(-16,-87,-35,-62);g.fill();
+    oval(g,-16,-98,12,8,p.hair2);
+  }else{
+    g.moveTo(-34,-64);g.bezierCurveTo(-36,-111,4,-120,27,-100);g.quadraticCurveTo(41,-83,32,-62);g.lineTo(23,-73);g.quadraticCurveTo(-3,-87,-34,-64);g.fill();
+    g.fillStyle=p.hair2;g.beginPath();g.moveTo(-24,-92);g.quadraticCurveTo(-7,-107,17,-99);g.lineTo(2,-91);g.quadraticCurveTo(-13,-96,-24,-92);g.fill();
+  }
+}
+function drawChibi(g,kind,opts={}){
+  const p=characters[kind],seated=!!opts.seated,panic=!!opts.panic,walk=!!opts.walk,raise=!!opts.raise;
+  const wob=walk?Math.sin(clock*17)*3:0;
+  g.save();
+  // Very short legs, large round head and compact torso (consistent 2-heads-tall silhouette).
+  if(seated){
+    stroke(g,-16,9,-20,26,p.pants,14);stroke(g,14,10,18,28,p.pants,14);
+    oval(g,-21,31,12,6,'#343f4e');oval(g,19,32,12,6,'#343f4e');
+  }else{
+    stroke(g,-15,7,-16,42+wob,p.pants,13);stroke(g,14,7,16,42-wob,p.pants,13);
+    oval(g,-17,45+wob,13,7,'#374953');oval(g,18,45-wob,13,7,'#374953');
+  }
+  rounded(g,-30,-35,60,54,19,p.shirt);
+  rounded(g,-22,-31,44,13,6,p.detail+'77');
+  if(kind==='boss'){
+    rounded(g,-5,-32,10,12,3,'#f6ede8');oval(g,0,-18,2.2,2.2,'#d5dadd');oval(g,0,-7,2.2,2.2,'#d5dadd');
+  }else if(kind==='woman'){
+    rounded(g,-5,-34,10,15,3,'#dde4e0');rounded(g,-28,-27,9,35,4,'#f1f2ee');
+  }else if(kind==='man'){
+    rounded(g,-13,-28,26,5,3,'#69737a');
+  }else{
+    rounded(g,-3,-30,6,36,3,'#eeb180');
+  }
+  const sway=panic?Math.sin(clock*18)*8:0;
+  stroke(g,-27,-21,-38,(raise?-72:-8)-sway,p.face,12);
+  stroke(g,27,-21,37,(raise?-71:-8)+sway,p.face,12);
+  oval(g,-39,(raise?-73:-10)-sway,7,7,p.face);
+  oval(g,37,(raise?-72:-10)+sway,7,7,p.face);
+  // Face is deliberately larger than torso: same face used in every view.
+  oval(g,-32,-65,6,12,p.face);oval(g,32,-65,6,12,p.face);
+  oval(g,0,-72,34,35,p.face);
+  oval(g,-10,-91,14,8,'#fff4e622');
+  hairShape(g,kind,p);
+  if(kind==='woman'){
+    g.strokeStyle='#3b4047';g.lineWidth=3;g.beginPath();g.roundRect(-27,-75,24,18,6);g.roundRect(3,-75,24,18,6);g.stroke();
+    stroke(g,-3,-67,3,-67,'#3b4047',3);stroke(g,-27,-67,-32,-69,'#3b4047',2);
+  }
+  if(panic){oval(g,-11,-64,3,4,'#454449');oval(g,11,-64,3,4,'#454449');oval(g,0,-49,5.8,8,'#8c5758')}
+  else{
+    oval(g,-12,-65,2.5,3,'#3b4146');oval(g,12,-65,2.5,3,'#3b4146');
+    g.strokeStyle='#ad7166';g.lineWidth=2.3;g.beginPath();g.arc(0,-52,7,.18,Math.PI-.18);g.stroke();
+  }
+  if(kind==='man'&&!panic){stroke(g,-8,-46,-5,-43,'#806e66',1.4);stroke(g,8,-46,5,-43,'#806e66',1.4)}
+  g.restore();
+}
+function drawChair(g,kind){
+  const p=characters[kind];
+  // Tiny rolling chair sits BEHIND the avatar, never stretches the body.
+  oval(g,0,52,35,6,'#3545511c');
+  rounded(g,-28,-31,56,67,19,p.chair);
+  rounded(g,-24,-26,8,46,4,'#ffffff39');
+  rounded(g,-30,18,60,12,6,p.chair);
+  stroke(g,0,30,0,51,'#6d7a7c',6);
+  stroke(g,-26,52,27,52,'#637278',5);
+  oval(g,-27,55,7,6,'#475760');oval(g,28,55,7,6,'#475760');
+}
+function drawSeatedPerson(g,kind,panic){
+  drawChair(g,kind);
+  drawChibi(g,kind,{seated:true,panic});
+  // The same chair arms render for icon and stage.
+  rounded(g,-35,3,12,12,5,characters[kind].chair);
+  rounded(g,23,3,12,12,5,characters[kind].chair);
+}
+function chairPerson(x,y,rot=0,scale=1,kind=who,panic=false){
+  ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(.91*scale,.91*scale);
+  drawSeatedPerson(ctx,kind,panic);ctx.restore();
+}
+function hero(x,y,walking=false,lifting=false){
+  ctx.save();ctx.translate(x,y);ctx.scale(.91,.91);
+  oval(ctx,0,49,28,6,'#3149531b');
+  drawChibi(ctx,'player',{walk:walking,raise:lifting});ctx.restore();
+}
+function arrows(){const x=bossX+10,y=floor-55;ctx.save();ctx.setLineDash([5,8]);ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x-70,y+18,x-107,y+89);ctx.lineWidth=3;ctx.strokeStyle='#e89869';ctx.stroke();ctx.restore();line(x-107,y+89,x-91,y+83,'#e89869',3);line(x-107,y+89,x-103,y+73,'#e89869',3)}
+function trajectory(){const x=bossX+10,y=floor-122,a=aim.angle,speed=420+860*aim.power;ctx.save();ctx.setLineDash([4,11]);ctx.lineWidth=4;ctx.lineCap='round';ctx.strokeStyle='#e59466';ctx.beginPath();for(let i=0;i<=33;i++){const t=i*.052,xx=x+Math.cos(a)*speed*t,yy=y-Math.sin(a)*speed*t+590*t*t/2;if(yy>floor||xx>x+W*.85)break;if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy)}ctx.stroke();ctx.restore();rr(x-86,73,175,35,15,'#fffef3');ctx.textAlign='center';ctx.fillStyle='#49606a';ctx.font='800 15px system-ui';ctx.fillText(`力道 ${Math.round(aim.power*100)}%  ·  ${Math.round(a*180/Math.PI)}°`,x,96)}
+function flying(){ctx.save();ctx.translate(-cam,0);for(let i=0;i<rocket.trail.length;i+=2){const p=rocket.trail[i];ctx.globalAlpha=Math.max(0,p.life/.3)*.27;ellipse(p.x-10,p.y,11,4,'#fff')}ctx.globalAlpha=1;chairPerson(rocket.x,rocket.y,rocket.rot*.7,1,who,true);ctx.restore()}
+function particles(){ctx.save();ctx.translate(-cam,0);for(const q of shards){ctx.save();ctx.translate(q.x,q.y);ctx.rotate(q.rot);ctx.globalAlpha=clamp(q.life,0,1);ctx.beginPath();ctx.moveTo(-q.size/2,-q.size/2);ctx.lineTo(q.size/2,-q.size/3);ctx.lineTo(0,q.size);ctx.closePath();fill('#d5f5ff');ctx.strokeStyle='#97d3e1';ctx.lineWidth=1.4;ctx.stroke();ctx.restore()}for(const q of stars){ctx.globalAlpha=clamp(q.life,0,1);ellipse(q.x,q.y,q.r,q.r*.65,q.c)}ctx.restore();ctx.globalAlpha=1}
+function draw(){ctx.setTransform(dpr*s,0,0,dpr*s,0,0);ctx.clearRect(0,0,W,H);ctx.save();if(shake)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake*.7);sky();office();if(['intro','walk','ready','aim'].includes(state)){ctx.save();ctx.translate(-cam,0);const p=state==='walk'?clamp(approach/.76,0,1):state==='intro'?0:1;hero(lerp(Math.max(36,heroX-110),heroX,p),floor-53,state==='walk',state==='aim');if(state==='aim'){chairPerson(bossX+10,floor-122+Math.sin(clock*10)*2,Math.sin(clock*7)*.025,1,who);trajectory()}else{chairPerson(bossX+10,floor-53,0,1,who);if(state==='ready'){arrows();rr(bossX-102,floor-244,203,37,17,'#fffdf7');ctx.fillStyle='#536773';ctx.textAlign='center';ctx.font='800 14px system-ui';ctx.fillText('👇 抓住椅子，往左下拉',bossX,floor-220)}}ctx.restore()}if(['fly','result'].includes(state)){ctx.save();ctx.translate(-cam,0);if(cam<W*.9)hero(heroX,floor-53,false,true);ctx.restore();flying()}particles();ctx.restore()}
+function loop(now){if(!loop.prev)loop.prev=now;const dt=clamp((now-loop.prev)/1000,0,.032);loop.prev=now;if(state!=='intro'&&state!=='result')tick(dt);else clock+=dt;draw();requestAnimationFrame(loop)}
+// Same drawing functions on small canvases: any changes to the game character
+// automatically update the portraits and preserve exact face/body proportions.
+function portraits(){
+  document.querySelectorAll('.miniAvatar').forEach(can=>{
+    const g=can.getContext('2d'),key=can.dataset.person;
+    g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,140,140);
+    g.fillStyle='#e2efeb';g.fillRect(0,0,140,140);
+    g.save();g.translate(70,93);g.scale(.84,.84);
+    drawSeatedPerson(g,key,false);
+    g.restore();
+  });
+}
+// events
+el('start').addEventListener('click',reset);el('retry').addEventListener('click',reset);el('reset').addEventListener('click',reset);document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.person)));window.addEventListener('resize',resize);document.addEventListener('visibilitychange',()=>{loop.prev=performance.now()});resize();portraits();labelScore();requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
