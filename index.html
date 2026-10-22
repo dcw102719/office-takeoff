@@ -25,15 +25,15 @@
 <canvas id="game" role="application" aria-label="抓住椅子往左下拖曳，放開即可發射"></canvas>
 <div class="hud" aria-hidden="true"><div class="stat"><small>本次距離</small><strong id="score">0<span>m</span></strong></div><div class="phase" id="phase">🏢 辦公室頂樓</div><div class="stat right"><small>個人最佳</small><strong id="best">0<span>m</span></strong></div></div>
 <div class="toast hide" id="toast">按住畫面、往左下拉，再放開！</div>
-<div class="modalwrap" id="intro"><div class="modal"><div class="sticker">🪑💨</div><h2>今天誰要起飛？</h2><p>選一位 Q 版角色，悄悄繞到椅子後方，<br>抓住 → 往左下拉瞄準 → 放開！<br>玻璃咔嚓一聲，開始比誰飛得遠。</p><button class="btn" id="start">▶ 開始遊戲</button><p class="note" style="margin-top:14px;margin-bottom:0">卡通特效 · 安全軟墊降落 · 不包含真實照片</p></div></div>
+<div class="modalwrap" id="intro"><div class="modal"><div class="sticker">🪑💨</div><h2>今天誰要起飛？</h2><p>選一位 Q 版角色，悄悄繞到椅子後方，<br>抓住 → 往左下拉瞄準 → 放開！<br>玻璃咔嚓一聲，開始比誰飛得遠。</p><button class="btn" id="start">▶ 開始遊戲</button><p class="note" style="margin-top:14px;margin-bottom:0">卡通特效 · 安全軟墊降落 </p></div></div>
 <div class="modalwrap hide" id="result"><div class="modal"><div class="sticker" id="resultIcon">🏆</div><h2 id="resultTitle">漂亮起飛！</h2><div class="bigscore"><span id="resultNum">0</span><span> 公尺</span></div><p id="resultSub">再來一次，挑戰更遠！</p><button class="btn" id="retry">🔁 再丟一次</button></div></div>
 </section>
-<section class="panel"><div class="paneltitle"><strong>🎭 選擇角色</strong><small>遊戲裡與選單完全相同的角色</small></div><div class="choices">
+<section class="panel"><div class="paneltitle"><strong>🎭 選擇角色</strong><small>趕快選一位角色</small></div><div class="choices">
 <button class="choice on" data-person="boss" aria-pressed="true"><canvas class="miniAvatar" data-person="boss" width="140" height="140"></canvas><span><b>神秘老闆</b><small>灰髮 · 深藍上衣</small></span></button>
 <button class="choice" data-person="woman" aria-pressed="false"><canvas class="miniAvatar" data-person="woman" width="140" height="140"></canvas><span><b>主管 A</b><small>眼鏡 · 綁髮</small></span></button>
 <button class="choice" data-person="man" aria-pressed="false"><canvas class="miniAvatar" data-person="man" width="140" height="140"></canvas><span><b>主管 B</b><small>黑髮 · 深色上衣</small></span></button>
 </div><div class="below"><div class="directions"><b>玩法：</b>手指／滑鼠按住 → 往左下拉 → 放開發射！<br>角色自動走到椅子後面，完全不用控制走路。</div><button class="smallbtn" id="reset">↻ 重新開始</button></div></section>
-<p class="foot">以照片的髮型、眼鏡與服裝做簡化角色設計，上方遊戲與下方選單使用完全相同的人物圖形。三位都是趣味卡通角色，最後會掉入安全氣墊。最佳紀錄只儲存在這台裝置。</p>
+<p class="foot">三位都是趣味卡通角色，最後會掉入安全氣墊。最佳紀錄只儲存在這台裝置。</p>
 </main>
 <script>
 (()=>{
